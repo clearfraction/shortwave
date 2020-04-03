@@ -14,7 +14,7 @@ License:    GPLv3
 URL:        https://gitlab.gnome.org/World/Shortwave
 Source0:    https://gitlab.gnome.org/World/Shortwave/-/archive/%{commit0}/Shortwave-%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 
-BuildRequires:  rustc 
+#BuildRequires:  rustc 
 BuildRequires:  meson
 BuildRequires:  ninja
 BuildRequires:  pkgconfig(gtk+-3.0) >= 3.14
@@ -54,11 +54,11 @@ A GTK3 app for finding and listening to internet radio stations.
 %setup -n Shortwave-%{commit0}
 
 # We need Rust 1.39
-# mkdir -p rustdir
-#curl -O https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
-#tar xmzvf rust-nightly-x86_64-unknown-linux-gnu.tar.gz -C $PWD
-#chmod a+x rust-nightly-x86_64-unknown-linux-gnu/install.sh
-#rust-nightly-x86_64-unknown-linux-gnu/install.sh --prefix=rustdir --disable-ldconfig --verbose
+mkdir -p rustdir
+curl -O https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
+tar xmzvf rust-nightly-x86_64-unknown-linux-gnu.tar.gz -C $PWD
+chmod a+x rust-nightly-x86_64-unknown-linux-gnu/install.sh
+rust-nightly-x86_64-unknown-linux-gnu/install.sh --prefix=rustdir --disable-ldconfig --verbose
 
 %build
 export PATH=$PATH:$PWD/rustdir/bin:/usr/bin
