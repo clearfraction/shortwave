@@ -7,11 +7,10 @@ Name:       shortwave
 Version:    1.0.1
 Release:    8%{?gver}
 Summary:    Find and listen to internet radio stations
-
-Group:      Applications/Internet
-License:    GPLv3
-URL:        https://gitlab.gnome.org/World/Shortwave
-Source0:    https://gitlab.gnome.org/World/Shortwave/-/archive/%{commit0}/Shortwave-%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
+Group:          Applications/Internet
+License:        GPLv3
+URL:             https://gitlab.gnome.org/World/Shortwave
+Source0:      https://gitlab.gnome.org/World/Shortwave/-/archive/%{commit0}/Shortwave-%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 
 # BuildRequires:  rustc 
 BuildRequires:  meson
@@ -28,38 +27,41 @@ BuildRequires:  pkgconfig(gstreamer-pbutils-1.0)
 BuildRequires:  pkgconfig(gstreamer-plugins-base-1.0)
 BuildRequires:  pkgconfig(gstreamer-plugins-bad-1.0)
 BuildRequires:  intltool desktop-file-utils
-BuildRequires:	appstream-glib-dev
+BuildRequires:  appstream-glib-dev
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(sqlite3)
-BuildRequires:	gettext
-BuildRequires:	git
-BuildRequires:	libhandy-devel
-BuildRequires:	libdazzle-devel
-BuildRequires:	desktop-file-utils
-BuildRequires:	openssl-dev
-BuildRequires:	gcc
-Requires:       dconf
-Requires:       gstreamer1-plugins-base-tools
-Requires:       gstreamer1-plugins-base
-Requires:       libappstream-glib
-Requires:       sqlite-libs
-Requires:       gstreamer1-plugins-bad-nonfree
-Requires:       gstreamer1-libav
+BuildRequires:  gettext
+BuildRequires:  git
+BuildRequires:  libhandy-devel
+BuildRequires:  libdazzle-devel
+BuildRequires:  desktop-file-utils
+BuildRequires:  openssl-dev
+BuildRequires:  gcc
+Requires:          dconf
+Requires:          gstreamer1-plugins-base-tools
+Requires:          gstreamer1-plugins-base
+Requires:          libappstream-glib
+Requires:          sqlite-libs
+Requires:          gstreamer1-plugins-bad-nonfree
+Requires:          gstreamer1-libav
 
 %description
 A GTK3 app for finding and listening to internet radio stations.
 
 %prep 
 %setup -n Shortwave-%{commit0}
-mkdir -p rustdir
-curl -O https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
-tar xmzvf rust-nightly-x86_64-unknown-linux-gnu.tar.gz -C $PWD
-chmod a+x rust-nightly-x86_64-unknown-linux-gnu/install.sh
-echo "START RUST INSTALL"
-rust-nightly-x86_64-unknown-linux-gnu/install.sh --prefix=rustdir --disable-ldconfig --verbose
+#mkdir -p rustdir
+#curl -O https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
+#tar xmzvf rust-nightly-x86_64-unknown-linux-gnu.tar.gz -C $PWD
+#chmod a+x rust-nightly-x86_64-unknown-linux-gnu/install.sh
+#echo "START RUST INSTALL"
+#rust-nightly-x86_64-unknown-linux-gnu/install.sh --prefix=rustdir --disable-ldconfig --verbose
 
 %build
-export PATH=$PATH:$PWD/rustdir/bin:/usr/bin
+#export PATH=$PATH:$PWD/rustdir/bin:/usr/bin
+unset http_proxy
+unset no_proxy 
+unset https_proxy
 meson --libdir=lib64 --prefix=/usr --buildtype=plain  builddir
 ninja -v -C builddir
 
