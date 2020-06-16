@@ -32,8 +32,8 @@ BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  gettext
 BuildRequires:  git
-BuildRequires:  libhandy-devel
-BuildRequires:  libdazzle-devel
+BuildRequires:  libhandy1-dev
+BuildRequires:  libdazzle-dev
 BuildRequires:  desktop-file-utils
 BuildRequires:  openssl-dev
 BuildRequires:  gcc
