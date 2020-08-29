@@ -5,7 +5,7 @@
 
 Name:       shortwave
 Version:    1.1.1
-Release:    1%{?gver}
+Release:    2%{?gver}
 Summary:    Find and listen to internet radio stations
 Group:      Applications/Internet
 License:    GPLv3
