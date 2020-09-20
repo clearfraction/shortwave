@@ -1,5 +1,5 @@
 %global debug_package %{nil}
-%global commit0 d0e008036bde4bfb5c93278a68aae6190b38d82a
+%global commit0 f67468a56364db7729cbe1b8b696b45dc1e10f3e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
@@ -32,25 +32,24 @@ BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  gettext
 BuildRequires:  git
-BuildRequires:  libhandy1-dev
+BuildRequires:  libhandy-dev
 BuildRequires:  libdazzle-dev
 BuildRequires:  desktop-file-utils
 BuildRequires:  openssl-dev
 BuildRequires:  gcc
-Requires:          dconf
-Requires:          gstreamer1-plugins-base-tools
-Requires:          gstreamer1-plugins-base
-Requires:          libappstream-glib
-Requires:          sqlite-libs
-Requires:          gstreamer1-plugins-bad-nonfree
-Requires:          gstreamer1-libav
+Requires:       dconf
+Requires:       gstreamer1-plugins-base-tools
+Requires:       gstreamer1-plugins-base
+Requires:       libappstream-glib
+Requires:       sqlite-libs
+Requires:       gstreamer1-plugins-bad-nonfree
+Requires:       gstreamer1-libav
 
 %description
 A GTK3 app for finding and listening to internet radio stations.
 
 %prep 
 %setup -n Shortwave-%{commit0}
-sed -i 's/c5ed9d1bf5aab9c29a3e7e7904347159c2518d59/4fe9856e4d2fb0137dde2319bcabacf25d8c4f0d/' Cargo.lock
 #mkdir -p rustdir
 #curl -O https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
 #tar xmzvf rust-nightly-x86_64-unknown-linux-gnu.tar.gz -C $PWD
