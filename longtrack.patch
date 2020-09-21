@@ -7,7 +7,7 @@ diff -urN shortwave-1.1.1-orig/src/audio/player.rs shortwave-1.1.1/src/audio/pla
      fn get_path(&self) -> Option<PathBuf> {
          if let Some(title) = &self.current_title {
 -            let title = utils::simplify_string(title.to_string());
-+            let title = &utils::simplify_string(title.to_string())[..200]; 
++            let title = &utils::simplify_string(title.to_string())[..utils::simplify_string(title.to_string()).len().min(200)];
  
              let mut path = path::CACHE.clone();
              path.push("recording");
