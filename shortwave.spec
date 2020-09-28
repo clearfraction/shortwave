@@ -5,7 +5,7 @@
 
 Name:       shortwave
 Version:    1.1.1
-Release:    2%{?gver}
+Release:    3%{?gver}
 Summary:    Find and listen to internet radio stations
 Group:      Applications/Internet
 License:    GPLv3
@@ -52,6 +52,8 @@ A GTK3 app for finding and listening to internet radio stations.
 %prep 
 %setup -n Shortwave-%{commit0}
 %patch0 -p1
+# fix broken libhandy-rs branch
+curl -LO https://gist.github.com/paulcarroty/cf89d7b920d19d53755e1d0f82ccd73a/raw/7dd0e695eaed3b38cd81ffa0e8d8a2c15b2b4669/Cargo.toml
 
 #mkdir -p rustdir
 #curl -O https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
