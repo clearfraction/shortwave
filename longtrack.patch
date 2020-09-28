@@ -1,8 +1,8 @@
-https://gitlab.gnome.org/World/Shortwave/-/merge_requests/401
+# https://gitlab.gnome.org/World/Shortwave/-/merge_requests/401
 diff -urN shortwave-1.1.1-orig/src/audio/player.rs shortwave-1.1.1/src/audio/player.rs
---- shortwave-1.1.1-orig/src/audio/player.rs	2020-06-07 23:30:57.000000000 +0300
-+++ shortwave-1.1.1/src/audio/player.rs	2020-09-21 19:14:37.613004863 +0300
-@@ -334,7 +334,7 @@
+--- shortwave-1.1.1-orig/src/audio/player.rs	2020-09-28 09:54:49.595346930 +0300
++++ shortwave-1.1.1/src/audio/player.rs	2020-09-28 09:56:47.820571061 +0300
+@@ -334,7 +334,10 @@
      /// Returns path for current title
      fn get_path(&self) -> Option<PathBuf> {
          if let Some(title) = &self.current_title {
@@ -12,13 +12,11 @@ diff -urN shortwave-1.1.1-orig/src/audio/player.rs shortwave-1.1.1/src/audio/pla
 +            let cut_to_length = title_vec.len().min(200);
 +            let title = text_vec[..cut_to_length].iter().cloned().collect::<String>();
  
-
- 
              let mut path = path::CACHE.clone();
              path.push("recording");
 diff -urN shortwave-1.1.1-orig/src/utils.rs shortwave-1.1.1/src/utils.rs
---- shortwave-1.1.1-orig/src/utils.rs	2020-06-07 23:30:57.000000000 +0300
-+++ shortwave-1.1.1/src/utils.rs	2020-09-21 19:18:43.222021781 +0300
+--- shortwave-1.1.1-orig/src/utils.rs	2020-09-28 09:54:49.596346888 +0300
++++ shortwave-1.1.1/src/utils.rs	2020-09-28 09:58:20.520357234 +0300
 @@ -99,6 +99,7 @@
  // If anybody knows a better way to do this, feel free to open a MR on GitLab :)
  pub fn simplify_string(s: String) -> String {
