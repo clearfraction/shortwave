@@ -1,5 +1,5 @@
 %global debug_package %{nil}
-%global commit0 f67468a56364db7729cbe1b8b696b45dc1e10f3e
+%global commit0 20e39c6eb5a350fa99cb67cec19f436ac20deabe
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
@@ -11,7 +11,6 @@ Group:      Applications/Internet
 License:    GPLv3
 URL:        https://gitlab.gnome.org/World/Shortwave
 Source0:    https://gitlab.gnome.org/World/Shortwave/-/archive/%{commit0}/Shortwave-%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
-Patch0:         longtrack.patch
 
 BuildRequires:  rustc 
 BuildRequires:  meson
@@ -51,9 +50,6 @@ A GTK3 app for finding and listening to internet radio stations.
 
 %prep 
 %setup -n Shortwave-%{commit0}
-%patch0 -p1
-# fix broken libhandy-rs branch
-curl -LO https://gist.github.com/paulcarroty/cf89d7b920d19d53755e1d0f82ccd73a/raw/7dd0e695eaed3b38cd81ffa0e8d8a2c15b2b4669/Cargo.toml
 
 #mkdir -p rustdir
 #curl -O https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
