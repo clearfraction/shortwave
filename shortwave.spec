@@ -32,7 +32,7 @@ BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(sqlite3)
 BuildRequires:  gettext
 BuildRequires:  git
-BuildRequires:  compat-libhandy-0.0-dev
+BuildRequires:  libhandy-dev
 BuildRequires:  libdazzle-dev
 BuildRequires:  desktop-file-utils
 BuildRequires:  openssl-dev
