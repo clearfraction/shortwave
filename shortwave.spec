@@ -5,12 +5,13 @@
 
 Name:       shortwave
 Version:    1.1.1
-Release:    3%{?gver}
+Release:    4%{?gver}
 Summary:    Find and listen to internet radio stations
 Group:      Applications/Internet
 License:    GPLv3
 URL:        https://gitlab.gnome.org/World/Shortwave
 Source0:    https://gitlab.gnome.org/World/Shortwave/-/archive/%{commit0}/Shortwave-%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
+Patch0:     longtrack.patch
 
 BuildRequires:  rustc 
 BuildRequires:  meson
@@ -50,6 +51,7 @@ A GTK3 app for finding and listening to internet radio stations.
 
 %prep 
 %setup -n Shortwave-%{commit0}
+%patch -p0
 
 #mkdir -p rustdir
 #curl -O https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
