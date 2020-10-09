@@ -51,7 +51,7 @@ A GTK3 app for finding and listening to internet radio stations.
 
 %prep 
 %setup -n Shortwave-%{commit0}
-%patch -p0
+%patch0 -p1
 
 #mkdir -p rustdir
 #curl -O https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
