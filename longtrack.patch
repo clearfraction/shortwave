@@ -1,27 +1,19 @@
-# https://gitlab.gnome.org/World/Shortwave/-/merge_requests/401
-diff -urN shortwave-1.1.1-orig/src/audio/player.rs shortwave-1.1.1/src/audio/player.rs
---- shortwave-1.1.1-orig/src/audio/player.rs	2020-09-28 09:54:49.595346930 +0300
-+++ shortwave-1.1.1/src/audio/player.rs	2020-09-28 09:56:47.820571061 +0300
-@@ -334,7 +334,10 @@
-     /// Returns path for current title
-     fn get_path(&self) -> Option<PathBuf> {
-         if let Some(title) = &self.current_title {
--            let title = utils::simplify_string(title.to_string());
-+            let title_raw = utils::simplify_string(title.to_string());
-+            let title_vec = title_raw.chars().collect::<Vec<_>>();
-+            let cut_to_length = title_vec.len().min(200);
-+            let title = text_vec[..cut_to_length].iter().cloned().collect::<String>();
+diff -urN Shortwave-orig/src/audio/player.rs Shortwave/src/audio/player.rs
+--- Shortwave-orig/src/audio/player.rs	2020-10-09 16:40:26.302135726 +0300
++++ Shortwave/src/audio/player.rs	2020-10-09 16:56:47.861256645 +0300
+@@ -389,9 +389,12 @@
+             // Remove unsupported characters from the file name
+             let title_raw = utils::simplify_string(title.to_string());
+             // Limit file name to 200 chars
+-            let title_vec = title_raw.chars().collect::<Vec<_>>();
+-            let cut_to_length = title_vec.len().min(200);
+-            let title = title_vec[..cut_to_length].iter().cloned().collect::<String>();
++            let mut limit = 200;
++                while (title_raw.len() > 200) && (!title_raw.is_char_boundary(limit)) {
++                    limit -= 1;
++                }
++            let title = &title_raw[..limit.min(title_raw.len())];
++
  
              let mut path = path::CACHE.clone();
              path.push("recording");
-diff -urN shortwave-1.1.1-orig/src/utils.rs shortwave-1.1.1/src/utils.rs
---- shortwave-1.1.1-orig/src/utils.rs	2020-09-28 09:54:49.596346888 +0300
-+++ shortwave-1.1.1/src/utils.rs	2020-09-28 09:58:20.520357234 +0300
-@@ -99,6 +99,7 @@
- // If anybody knows a better way to do this, feel free to open a MR on GitLab :)
- pub fn simplify_string(s: String) -> String {
-     let mut string = s.replace("/", "");
-+    string = string.replace("\\0", "");
-     string = string.replace("\\", "");
-     string = string.replace(":", "");
-     string = string.replace("<", "");
