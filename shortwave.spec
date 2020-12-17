@@ -65,7 +65,7 @@ A GTK3 app for finding and listening to internet radio stations.
 unset http_proxy
 unset no_proxy 
 unset https_proxy
-meson --libdir=lib64 --prefix=/usr --buildtype=plain  builddir
+meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dpkgdatadir=/opt/3rd-party/bundles/clearfraction/usr/share/shortwave  builddir
 ninja -v -C builddir
 
 %install
