@@ -53,6 +53,9 @@ A GTK3 app for finding and listening to internet radio stations.
 %setup -n Shortwave-%{commit0}
 %patch0 -p1
 
+# fix pkgdatadir
+sed -i  "s|pkgdatadir = join_paths(get_option('prefix'), datadir, meson.project_name())|pkgdatadir = '/opt/3rd-party/bundles/clearfraction/usr/share/shortwave'|" meson.build
+
 #mkdir -p rustdir
 #curl -O https://static.rust-lang.org/dist/rust-nightly-x86_64-unknown-linux-gnu.tar.gz
 #tar xmzvf rust-nightly-x86_64-unknown-linux-gnu.tar.gz -C $PWD
