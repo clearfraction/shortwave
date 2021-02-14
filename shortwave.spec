@@ -12,7 +12,6 @@ License:    GPLv3
 URL:        https://gitlab.gnome.org/World/Shortwave
 Source0:    https://gitlab.gnome.org/World/Shortwave/-/archive/%{commit0}/Shortwave-%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 Patch0:     longtrack.patch
-
 BuildRequires:  rustc 
 BuildRequires:  meson
 BuildRequires:  ninja
