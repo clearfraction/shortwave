@@ -1,21 +1,21 @@
 %global debug_package %{nil}
-%global commit0 20e39c6eb5a350fa99cb67cec19f436ac20deabe
+%global commit0 e3407d72e3151d08be2b67a24f8d8744f8d65166
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
 Name:       shortwave
-Version:    1.1.1
-Release:    4%{?gver}
+Version:    2.0.0
+Release:    1%{?gver}
 Summary:    Find and listen to internet radio stations
 Group:      Applications/Internet
 License:    GPLv3
 URL:        https://gitlab.gnome.org/World/Shortwave
 Source0:    https://gitlab.gnome.org/World/Shortwave/-/archive/%{commit0}/Shortwave-%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
-Patch0:     longtrack.patch
 BuildRequires:  rustc 
 BuildRequires:  meson
 BuildRequires:  ninja
-BuildRequires:  pkgconfig(gtk+-3.0) >= 3.14
+BuildRequires:  libadwaita-dev
+BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gstreamer-1.0)
 BuildRequires:  pkgconfig(gee-0.8)
@@ -50,7 +50,6 @@ A GTK3 app for finding and listening to internet radio stations.
 
 %prep 
 %setup -n Shortwave-%{commit0}
-%patch0 -p1
 
 # fix pkgdatadir
 sed -i  "s|pkgdatadir = join_paths(get_option('prefix'), datadir, meson.project_name())|pkgdatadir = '/opt/3rd-party/bundles/clearfraction/usr/share/shortwave'|" meson.build
@@ -67,7 +66,7 @@ sed -i  "s|pkgdatadir = join_paths(get_option('prefix'), datadir, meson.project_
 unset http_proxy
 unset no_proxy 
 unset https_proxy
-meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dpkgdatadir=/opt/3rd-party/bundles/clearfraction/usr/share/shortwave  builddir
+meson --libdir=lib64 --prefix=/usr --buildtype=plain  builddir
 ninja -v -C builddir
 
 %install
