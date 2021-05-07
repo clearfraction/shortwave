@@ -1,11 +1,11 @@
 %global debug_package %{nil}
-%global commit0 e3407d72e3151d08be2b67a24f8d8744f8d65166
+%global commit0 9bfc5ee2d857035cf0d3c72e211b3d76b85d7414
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
 Name:       shortwave
-Version:    2.0.0
-Release:    1%{?gver}
+Version:    2.0.1
+Release:    1
 Summary:    Find and listen to internet radio stations
 Group:      Applications/Internet
 License:    GPLv3
