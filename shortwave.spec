@@ -1,4 +1,3 @@
-%global debug_package %{nil}
 %global commit0 9bfc5ee2d857035cf0d3c72e211b3d76b85d7414
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
